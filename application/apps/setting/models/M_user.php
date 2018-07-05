@@ -10,8 +10,8 @@
     return $this->db->get('tm_user');
    }
 
-   function insert($data_asman) {
-    return $this->db->insert('tm_user', $data_asman);
+   function insert($data_user) {
+    return $this->db->insert('tm_user', $data_user);
    }
 
    function getdata_byid($id) {

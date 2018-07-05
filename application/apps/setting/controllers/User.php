@@ -25,7 +25,7 @@
     $data = array(
       'h1_title'    => "Edit Data",
       'h1_subtitle' => "User",
-      'content'     => 'user/form/v_edit__user',
+      'content'     => 'user/form/v_edit_user',
       'data_user'   => $this->m_user->getdata_byid($id),
     );
     $this->load->view('mainview', $data);
@@ -82,18 +82,19 @@
     );
     $input = $this->input->post();
     if (isset($input['btnSimpan'])) {
-//     debug($input);
-     $data_asman = array(
+
+     $data_user = array(
        'id_jabatan'   => anti_xss($input['id_jabatan']),
        'id_level'     => anti_xss($input['id_level']),
        'username'     => anti_xss($input['username']),
-       'password'     => anti_xss($input['password']),
+       'password'     => enc(anti_xss($input['password'])),
        'nama_lengkap' => anti_xss($input['nama_lengkap']),
-       'nik'          => anti_xss($input['nik']),
+       'nik_user'     => anti_xss($input['nik_user']),
        'status_user'  => anti_xss($input['status_user']),
      );
+//     debug($data_user);
      if (!empty($input)) {
-      if ($this->m_user->insert($data_asman)) {
+      if ($this->m_user->insert($data_user)) {
        //PESAN BERHASIL
        $this->session->set_flashdata('pesan', 'Data berhasil dimasukkan ke dalam database');
        $this->session->set_flashdata('class', 'alert-info');
