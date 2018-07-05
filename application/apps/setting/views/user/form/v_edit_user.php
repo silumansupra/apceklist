@@ -32,10 +32,11 @@
       <?= btnBantuan() ?>
      </div>
      <div class="box-body">
+      <?= pesan() ?>
       <!--CONTENT START-->
       <div class="row">
        <div class="col-md-8">
-        <form action="<?php echo base_url() . "setting/user/edit" ?>" method="post">
+        <form action="<?php echo base_url() . "setting/user/update" ?>" method="post">
          <div class="form-group">
           <div class="row">
            <div class="col-md-3">
@@ -63,28 +64,6 @@
            </div>
            <div class="col-md-9">
             <input value="<?= $data_user->username ?>" name="username" id="username" placeholder="Username" type="text" class="form-control">
-           </div>
-          </div>
-         </div>
-         <div class="form-group">
-          <div class="row">
-           <div class="col-md-3">
-            <label class="control-label">PASSWORD</label>
-           </div>
-           <div class="col-md-9">
-            <input readonly="" name="password" id="password" placeholder="Kosongi jika tidak dirubah" type="password" class="form-control" onkeyup="CheckPasswordStrength();" >
-            <p class="text-muted" id="cekstr"></p>
-           </div>
-          </div>
-         </div>
-         <div class="form-group">
-          <div class="row">
-           <div class="col-md-3">
-            <label class="control-label">PASSWORD (KONFIRMASI)</label>
-           </div>
-           <div class="col-md-9">
-            <input name="password2" id="password2" placeholder="Konfirmasi password" type="password" class="form-control" onChange="checkPasswordMatch();" >
-            <p class="text-muted" id="cekmsg"></p>
            </div>
           </div>
          </div>
@@ -141,12 +120,17 @@
           <div class="row">
            <!--button-->
            <div class="col-md-12 text-right">
+            <input type="hidden" name="userid" value="<?= $data_user->userid ?>" >
             <a href="<?= base_url() . "setting/user" ?>" class="btn btn-warning">Kembali</a>
             <input type="submit" value="Simpan Data" class="btn btn-primary" name="btnSimpan">
            </div>
           </div>
          </div>
         </form>
+       </div>
+       <div class="col-md-4">
+        <h3> Ubah Password?</h3>
+        <a href="#">Klik di sini</a> untuk merubah password user <strong><?= $data_user->username ?></strong>
        </div>
       </div>
       <!--CONTENT END-->
@@ -175,77 +159,3 @@
  <!--FOOTER SCRIPT-->
  <?php $this->load->view('template/footer_script') ?>
  <!--CUSTOM JS-->
- <script>
-  function checkPasswordMatch() {
-   var password = $("#password").val();
-   var confirmPassword = $("#password2").val();
-
-   if (password != confirmPassword)
-    $("#cekmsg").html("<text class='text-danger'><strong>Password not match!</strong></text>");
-   else
-    $("#cekmsg").html("<text class='text-success'><strong>OK.</strong></text>");
-  }
-
-  $(document).ready(function () {
-   $("#password, #password2").keyup(checkPasswordMatch);
-  });
-
-  function CheckPasswordStrength() {
-   var password_cek = $("#password").val();
-   var password_strength = document.getElementById("cekstr");
-   //if textBox is empty
-   if (password_cek.length == 0) {
-    password_strength.innerHTML = "";
-    return;
-   }
-   //Regular Expressions
-   var regex = new Array();
-   regex.push("[A-Z]"); //For Uppercase Alphabet
-   regex.push("[a-z]"); //For Lowercase Alphabet
-   regex.push("[0-9]"); //For Numeric Digits
-   regex.push("[$@$!%*#?&]"); //For Special Characters
-
-   var passed = 0;
-
-   //Validation for each Regular Expression
-   for (var i = 0; i < regex.length; i++) {
-    if ((new RegExp(regex[i])).test(password_cek)) {
-     passed++;
-    }
-   }
-
-   //Validation for Length of Password
-   if (passed > 2 && password_cek.length > 8) {
-    passed++;
-   }
-
-   //Display of Status
-   var color = "";
-   var passwordStrength = "";
-   switch (passed) {
-    case 0:
-     break;
-    case 1:
-     passwordStrength = "Password is Weak.";
-     color = "Red";
-     break;
-    case 2:
-     passwordStrength = "Password is Good.";
-     color = "darkorange";
-     break;
-    case 3:
-     break;
-    case 4:
-     passwordStrength = "Password is Strong.";
-     color = "Green";
-     break;
-    case 5:
-     passwordStrength = "Password is Very Strong.";
-     color = "darkgreen";
-     break;
-   }
-   password_strength.innerHTML = passwordStrength;
-   password_strength.style.color = color;
-  }
-
- </script>

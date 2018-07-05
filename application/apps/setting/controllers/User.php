@@ -31,6 +31,14 @@
     $this->load->view('mainview', $data);
    }
 
+   function cek_pass($password) {
+    if (empty($password)) {
+     return "PASS KOSONG";
+    } else {
+     return "PASS ADA";
+    }
+   }
+
    function update() {
     $input = $this->input->post();
     $id    = $input['userid'];
@@ -39,9 +47,8 @@
        'id_jabatan'   => anti_xss($input['id_jabatan']),
        'id_level'     => anti_xss($input['id_level']),
        'username'     => anti_xss($input['username']),
-       'password'     => anti_xss($input['password']),
        'nama_lengkap' => anti_xss($input['nama_lengkap']),
-       'nik'          => anti_xss($input['nik']),
+       'nik_user'     => anti_xss($input['nik_user']),
        'status_user'  => anti_xss($input['status_user']),
      );
      if (!empty($input)) {
