@@ -27,38 +27,42 @@
     <!-- Default box -->
     <div class="box">
      <div class="box-header with-border">
-      <h3 class="box-title">Tabel Data</h3>
+      <h3 class="box-title">
+       <a href="<?= base_url() ?>perangkat/setup" class="btn btn-warning"><i class="fa fa-wrench"></i> Setup Perangkat</a>
+      </h3>
       <?= btnBantuan() ?>
      </div>
      <div class="box-body">
+      <?= pesan() ?>
       <!--CONTENT START-->
-      <table id="tbl_alat" class="table table-responsive table-bordered table-striped table-hover">
+      <table id="tabel" class="table table-responsive table-bordered table-striped table-hover">
        <thead>
         <tr>
-         <th>ID ALAT</th>
-         <th>OPD/SKPD</th>
-         <th>IP ADDRESS</th>
-         <th>PING</th>
-         <th>STATUS</th>
+         <th>#</th>
+         <th>NAMA PERANGKAT</th>
+         <th>LOKASI</th>
+         <th>STATUS SETUP</th>
+         <th>STATUS PERANGKAT</th>
          <th>AKSI</th>
         </tr>
        </thead>
        <tbody>
         <?php
-//            debug($data_pegawai);
+          $no = '1';
           foreach ($data_perangkat as $r) {
+           $status_p = $r['status_perangkat'];
+           $status_s = $r['status_setup'];
            ?>
            <tr>
-            <td class="tengah"><?= $r['id_alat'] ?></td>
-            <td><?= getNamaOPD($r['id_opd']) ?></td>
-            <td class="tengah"><?= $r['ip_mesin'] ?></td>
-            <td class="tengah">
-             <?= $status_ping = "1" ? "UP" : "DOWN" ?>
+            <th class="nomor"><?= $no++ ?></th>
+            <td><strong><?= $r['nama_perangkat'] ?></strong></td>
+            <td class="tengah"><?= $r['id_lokasi'] ?></td>
+            <td class="tengah"><?= $status_s == "1" ? "LIHAT SETUP" : "BLM DI SETUP"; ?></td>
+            <td class="tengah"><?= $status_p == "1" ? "AKTIF" : "NON-AKTIF"; ?></td>
+            <td class="aksi">
+             <a title="Edit" href="<?= base_url() . "perangkat/edit/" . $r['id_perangkat'] ?>" class="btn btn-xs btn-warning"><i class="fa fa-pencil"></i></a>
+             <a title="Hapus" onclick="confirm('Apakah Anda akan menghapus data ini?')" href="<?= base_url() . "perangkat/hapus/" . $r['id_perangkat'] ?>" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
             </td>
-            <td class="tengah">
-             <?= $status_alat = "1" ? "AKTIF" : "TDK AKTIF" ?>
-            </td>
-            <td>AKSI</td>
            </tr>
           <?php } ?>
        </tbody>
@@ -89,3 +93,16 @@
  <!--FOOTER SCRIPT-->
  <?php $this->load->view('template/footer_script') ?>
  <!--CUSTOM JS-->
+ <script>
+  $(document).ready(function () {
+   $('#tabel').DataTable({
+    'paging': true,
+    'lengthChange': true,
+    'searching': true,
+    'ordering': true,
+    'info': true,
+    'autoWidth': false,
+    "pageLength": 25,
+   });
+  });
+ </script>
