@@ -59,6 +59,9 @@
     margin: 5px 0px 15px 0px;
     border-bottom: 1px solid #EBEBEB;
    }
+   thead {
+    background: #ddeaff;
+   }
   </style>
 
   <?php $this->load->view($content) ?>

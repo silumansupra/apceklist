@@ -56,12 +56,12 @@
            <tr>
             <th class="nomor"><?= $no++ ?></th>
             <td><strong><?= $r['nama_perangkat'] ?></strong></td>
-            <td class="tengah"><?= $r['id_lokasi'] ?></td>
-            <td class="tengah"><?= $status_s == "1" ? "LIHAT SETUP" : "BLM DI SETUP"; ?></td>
+            <td class="tengah"><?= $r['nama_lokasi'] ?></td>
+            <td class="tengah"><?= $status_s == "1" ? "<i class='fa fa-check text-success'></i> OK" : "<i class='fa fa-times text-danger'></i> Belum"; ?></td>
             <td class="tengah"><?= $status_p == "1" ? "AKTIF" : "NON-AKTIF"; ?></td>
             <td class="aksi">
              <a title="Edit" href="<?= base_url() . "perangkat/edit/" . $r['id_perangkat'] ?>" class="btn btn-xs btn-warning"><i class="fa fa-pencil"></i></a>
-             <a title="Hapus" onclick="confirm('Apakah Anda akan menghapus data ini?')" href="<?= base_url() . "perangkat/hapus/" . $r['id_perangkat'] ?>" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
+             <a title="Hapus" onclick="confirm('Apakah Anda akan menghapus perangkat beserta data kegiatan ceklist?')" href="<?= base_url() . "perangkat/hapus_perangkat/" . $r['id_perangkat'] ?>" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
             </td>
            </tr>
           <?php } ?>
