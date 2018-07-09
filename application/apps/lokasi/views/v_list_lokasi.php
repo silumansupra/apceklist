@@ -41,6 +41,7 @@
          <th>#</th>
          <th>NAMA LOKASI</th>
          <th>KETERANGAN</th>
+         <th>ASMAN</th>
          <th>STATUS</th>
          <th>AKSI</th>
         </tr>
@@ -48,6 +49,7 @@
        <tbody>
         <?php
           $no = '1';
+
           foreach ($data_lokasi as $r) {
            $status = $r['status_lokasi'];
            ?>
@@ -55,6 +57,7 @@
             <th class="nomor"><?= $no++ ?></th>
             <td><strong><?= $r['nama_lokasi'] ?></strong></td>
             <td><?= $r['ket_lokasi'] ?></td>
+            <td><?= $r['nama_asman'] == NULL ? "-" : $r['nama_asman'] ?></td>
             <td class="tengah"><?= $status == "1" ? "AKTIF" : "NON-AKTIF"; ?></td>
             <td class="aksi">
              <a title="Edit" href="<?= base_url() . "lokasi/edit/" . $r['id_lokasi'] ?>" class="btn btn-xs btn-warning"><i class="fa fa-pencil"></i></a>

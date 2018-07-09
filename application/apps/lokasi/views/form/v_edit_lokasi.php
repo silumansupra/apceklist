@@ -61,6 +61,23 @@
          <div class="form-group">
           <div class="row">
            <div class="col-md-3">
+            <label class="control-label">ASMAN</label>
+           </div>
+           <div class="col-md-9">
+            <select name="id_asman" class="form-control">
+             <?php
+               $data_asman = $this->db->get('tm_asman')->result_array();
+               foreach ($datalokasi as $r) {
+                ?>
+                <option <?= $data_perangkat->id_lokasi == $r['id_lokasi'] ? "selected" : "" ?> value="<?= $r['id_lokasi'] ?>"><?= $r['nama_lokasi'] ?></option>
+               <?php } ?>
+            </select>
+           </div>
+          </div>
+         </div>
+         <div class="form-group">
+          <div class="row">
+           <div class="col-md-3">
             <label class="control-label">STATUS</label>
            </div>
            <div class="col-md-9">

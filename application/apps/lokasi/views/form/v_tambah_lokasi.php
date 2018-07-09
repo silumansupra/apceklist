@@ -60,6 +60,24 @@
          <div class="form-group">
           <div class="row">
            <div class="col-md-3">
+            <label class="control-label">ASMAN</label>
+           </div>
+           <div class="col-md-9">
+            <select name="id_asman" class="form-control">
+             <option hidden disabled selected> Pilih Asman</option>
+             <?php
+               $data_asman = $this->db->get('tm_asman')->result_array();
+               foreach ($data_asman as $r) {
+                ?>
+                <option value="<?= $r['id_asman'] ?>"><?= $r['nama_asman'] ?></option>
+               <?php } ?>
+            </select>
+           </div>
+          </div>
+         </div>
+         <div class="form-group">
+          <div class="row">
+           <div class="col-md-3">
             <label class="control-label">STATUS</label>
            </div>
            <div class="col-md-9">

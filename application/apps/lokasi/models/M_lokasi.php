@@ -7,7 +7,8 @@
    }
 
    function getdata_lokasi() {
-    return $this->db->get('tm_lokasi');
+    $this->db->join('tm_asman b', 'b.id_asman = a.id_asman', 'left');
+    return $this->db->get('tm_lokasi a');
    }
 
    function insert($data_lokasi) {
