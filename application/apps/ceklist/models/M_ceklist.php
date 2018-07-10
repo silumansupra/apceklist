@@ -23,4 +23,20 @@
     return $get;
    }
 
+   function getdata_ceklist($idp, $idl) {
+    $this->db->where('id_perangkat', $idp);
+    $this->db->where('id_lokasi', $idl);
+    $get = $this->db->get('tt_ceklist');
+    return $get;
+   }
+
+   function simpan_kegiatan($datakeg) {
+    $query = $this->db->insert('tt_ceklist', $datakeg);
+    if ($query) {
+     return true;
+    } else {
+     return false;
+    }
+   }
+
   }

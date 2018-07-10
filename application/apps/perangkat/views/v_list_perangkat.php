@@ -28,7 +28,7 @@
     <div class="box">
      <div class="box-header with-border">
       <h3 class="box-title">
-       <a href="<?= base_url() ?>perangkat/setup" class="btn btn-warning"><i class="fa fa-wrench"></i> Setup Perangkat</a>
+       <a href="<?= base_url() ?>perangkat/setup" class="btn btn-primary"><i class="fa fa-wrench"></i> Setup Perangkat</a>
       </h3>
       <?= btnBantuan() ?>
      </div>

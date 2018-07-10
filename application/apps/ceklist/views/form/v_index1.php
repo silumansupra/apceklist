@@ -60,15 +60,35 @@
          Waktu Server: <?= date('d-m-Y H:i:s') ?>
         </div>
         <div class="col-md-4">
-         <strong>STATUS CEKLIST</strong><br>
-         $STATUS_CEKLIST (HARI INI)
+         <?php
+           $total_perangkat    = $this->db->query("SELECT COUNT( id_perangkat ) as totalp FROM tm_perangkat WHERE id_lokasi ='$id_lokasi'")->row()->totalp;
+           $total_perangkat_ck = $this->db->query("SELECT COUNT( id_perangkat ) as totalpck FROM tt_ceklist WHERE id_lokasi ='$id_lokasi'  AND SUBSTRING(waktu_ceklist,1,10) = '$tanggal'")->row()->totalpck;
+           if (isset($id_lokasi) && $total_perangkat > 0) {
+            $persen = ($total_perangkat / $total_perangkat_ck) * 100;
+            ?>
+            <div class="info-box bg-aqua">
+             <span class="info-box-icon"><i class="fa fa-check-square-o"></i></span>
+
+             <div class="info-box-content">
+              <span class="info-box-text">STATUS CEKLIST</span>
+              <span class="info-box-number"><?= $total_perangkat ?> perangkat</span>
+              <div class="progress">
+               <div class="progress-bar" style="width: <?= $persen ?>%"></div>
+              </div>
+              <span class="progress-description">
+               <?= round($persen) ?>% ( <b>3</b> dari <?= $total_perangkat ?> perangkat ).
+              </span>
+             </div>
+             <!-- /.info-box-content -->
+            </div>
+           <?php } ?>
         </div>
        </form>
       </div>
       <div class="row">
        <div class="col-md-12">
         <?php if ($data_form !== "0") { ?>
-           <h4>DATA PERANGKAT</h4>
+           <h4>DATA PERANGKAT CEKLIST</h4>
            <table class="table table-bordered table-striped">
             <thead>
              <tr>
@@ -83,21 +103,37 @@
              <?php
              $no = 1;
              foreach ($data_form as $r) {
+              $id_perangkat = $r['id_perangkat'];
+              $sql          = "SELECT * FROM tt_ceklist WHERE id_perangkat ='$id_perangkat' AND SUBSTRING(waktu_ceklist,1,10) = '$tanggal'";
+              $st_ceklist   = $this->db->query($sql);
+              $last_ceklist = empty($st_ceklist->row()->waktu_ceklist) ? "-" : $st_ceklist->row()->waktu_ceklist;
+              if ($last_ceklist == "-") {
+               $getwkt = "-";
+              } else {
+               $getwkt = jedaWaktu($last_ceklist);
+              }
               ?>
               <tr>
                <th class="nomor"><?= $no++ ?></th>
                <td><?= $r['nama_perangkat'] ?></td>
-               <td class="tengah"><?= "Last Ceklist" ?></td>
+               <td class="tengah"><?= $getwkt ?></td>
                <td class="tengah"><?= $r['status_perangkat'] == "1" ? "AKTIF" : "NON-AKTIF" ?></td>
                <td class="aksi">
-                <a title="Isi ceklist sekarang" href="<?= base_url() . "ceklist/form/perangkat?tanggal=$tanggal&id_lokasi=$id_lokasi&id_perangkat=" . $r['id_perangkat'] ?>" class="btn btn-primary btn-sm"><i class="fa fa-check-square-o"></i> Ceklist Perangkat</a>
+                <?php if ($st_ceklist->num_rows() <= 0) { ?>
+                 <a title="Ceklist" href="<?= base_url() . "ceklist/form/perangkat?tanggal=$tanggal&id_lokasi=$id_lokasi&id_perangkat=" . $r['id_perangkat'] ?>" class="btn btn-success"><i class="fa fa-check-square-o"></i> Ceklist</a>
+                <?php } else { ?>
+                 <a title="Detail" href="<?= base_url() . "ceklist/form/detail?tanggal=$tanggal&id_lokasi=$id_lokasi&id_perangkat=" . $r['id_perangkat'] ?>" class="btn btn-info"><i class="fa fa-search"></i> Detail</a>
+                <?php } ?>
                </td>
               </tr>
              <?php } ?>
             </tbody>
            </table>
           <?php } else { ?>
-           echo "TIDAK ADA";
+           <div class="callout callout-warning disabled">
+            <h4><i class="fa fa-exclamation-triangle"></i> Pilih Lokasi Terlebih Dahulu!</h4>
+            <p></p>
+           </div>
           <?php } ?>
        </div>
       </div>

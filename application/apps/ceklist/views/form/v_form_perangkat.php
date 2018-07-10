@@ -32,7 +32,7 @@
     <div class="box">
      <div class="box-header with-border">
       <h3 class="box-title">
-       FORM CEKLIST
+       <i class="fa fa-check-square"></i> FORM CEKLIST
       </h3>
       <?= btnBantuan() ?>
      </div>
@@ -40,17 +40,25 @@
       <!--CONTENT START-->
       <div class="row">
        <div class="col-md-12">
-        <table class="table">
-         <tr>
-          <td style="width:150px">NAMA PERANGKAT</td>
-          <td>: <?= $this->db->query("SELECT nama_perangkat FROM tm_perangkat WHERE id_perangkat=$id_perangkat")->row()->nama_perangkat; ?></td>
-         </tr>
-         <tr>
-          <td>LOKASI PERANGKAT</td>
-          <td>: <?= $this->db->query("SELECT nama_lokasi FROM tm_lokasi WHERE id_lokasi=$id_lokasi")->row()->nama_lokasi; ?></td>
-         </tr>
-        </table>
-        <form method="post" action="<?= base_url() . "ceklist/form/perangkat" ?>" id="fSimpanVal">
+        <div class="row">
+         <div class="col-md-8">
+          <table class="table">
+           <tr>
+            <td style="width:150px">NAMA PERANGKAT</td>
+            <td>: <?= $this->db->query("SELECT nama_perangkat FROM tm_perangkat WHERE id_perangkat=$id_perangkat")->row()->nama_perangkat; ?></td>
+           </tr>
+           <tr>
+            <td>LOKASI PERANGKAT</td>
+            <td>: <?= $this->db->query("SELECT nama_lokasi FROM tm_lokasi WHERE id_lokasi=$id_lokasi")->row()->nama_lokasi; ?></td>
+           </tr>
+          </table>
+         </div>
+         <div class="col-md-4">
+          <a href="<?= base_url() . "ceklist/form?tanggal=" . $tanggal . "&id_lokasi=" . $id_lokasi ?>" class="btn btn-warning pull-right"><i class="fa fa-arrow-left"></i> Kembali</a>
+         </div>
+        </div>
+        <form method="post" action="<?= base_url() . "ceklist/form/simpan" ?>" id="fSimpanVal">
+         <input type="hidden" name="id_perangkat" value="<?= $id_perangkat ?>">
          <input type="hidden" name="id_lokasi" value="<?= $id_lokasi ?>">
          <input type="hidden" name="tanggal" value="<?= $tanggal ?>">
          <table class="table table-bordered table-striped table-hover">
@@ -69,32 +77,39 @@
           <tbody>
            <?php
              $no           = 1;
-             foreach ($data_kegiatan as $k) {
-              ?>
-              <tr>
-               <td><?= $no++ ?></td>
-               <td><?= $k['nama_kegiatan'] . "<br><p class='small text-muted'>" . $k['tolak_ukur'] . "</p>" ?></td>
-               <td class="tengah">
-                <input style="width: 100px" type="text" class="form-control" placeholder="<?= $k['var1'] == "-" ? "-" : $k['var1'] ?>" name="val1" <?= $k['var1'] == "-" ? "disabled" : "" ?> required >
-               </td>
-               <td class="tengah">
-                <input style="width: 100px" type="text" class="form-control" placeholder="<?= $k['var2'] == "-" ? "-" : $k['var2'] ?>" name="val1" <?= $k['var2'] == "-" ? "disabled" : "" ?> required>
-               </td>
-               <td class="tengah">
-                <input style="width: 100px" type="text" class="form-control" placeholder="<?= $k['var3'] == "-" ? "-" : $k['var3'] ?>" name="val1" <?= $k['var3'] == "-" ? "disabled" : "" ?> required>
-               </td>
-               <td class="tengah">
-                <input style="width: 100px" type="text" class="form-control" placeholder="<?= $k['var4'] == "-" ? "-" : $k['var4'] ?>" name="val1" <?= $k['var4'] == "-" ? "disabled" : "" ?> required>
-               </td>
-               <td class="tengah">
-                <input style="width: 100px" type="text" class="form-control" placeholder="<?= $k['var5'] == "-" ? "-" : $k['var5'] ?>" name="val1" <?= $k['var5'] == "-" ? "disabled" : "" ?> required>
-               </td>
-               <td style="width: 100px"><small><?= $k['ket_kegiatan'] == "" ? "<center>-</center>" : $k['ket_kegiatan'] ?></small></td>
-              </tr>
-             <?php } ?>
+             if (empty($data_kegiatan)) {
+              echo "<tr><td class='tengah' colspan='8'>DATA KEGIATAN TIDAK TERSEDIA</td></tr>";
+             } else {
+              foreach ($data_kegiatan as $k) {
+               $idk = $k['id_kegiatan'];
+               ?>
+               <tr>
+                <td><?= $no++ ?></td>
+                <td><?= $k['nama_kegiatan'] . "<br><p class='small text-muted'>" . $k['tolak_ukur'] . "</p>" ?></td>
+                <td class="tengah">
+                 <input style="width: 100px" type="text" class="form-control" placeholder="<?= $k['var1'] == "-" ? "-" : $k['var1'] ?>" name="<?= $idk ?>_val1" <?= $k['var1'] == "-" ? "readonly" : "" ?> required >
+                </td>
+                <td class="tengah">
+                 <input style="width: 100px" type="text" class="form-control" placeholder="<?= $k['var2'] == "-" ? "-" : $k['var2'] ?>" name="<?= $idk ?>_val2" <?= $k['var2'] == "-" ? "readonly" : "" ?>>
+                </td>
+                <td class="tengah">
+                 <input style="width: 100px" type="text" class="form-control" placeholder="<?= $k['var3'] == "-" ? "-" : $k['var3'] ?>" name="<?= $idk ?>_val3" <?= $k['var3'] == "-" ? "readonly" : "" ?>>
+                </td>
+                <td class="tengah">
+                 <input style="width: 100px" type="text" class="form-control" placeholder="<?= $k['var4'] == "-" ? "-" : $k['var4'] ?>" name="<?= $idk ?>_val4" <?= $k['var4'] == "-" ? "readonly" : "" ?>>
+                </td>
+                <td class="tengah">
+                 <input style="width: 100px" type="text" class="form-control" placeholder="<?= $k['var5'] == "-" ? "-" : $k['var5'] ?>" name="<?= $idk ?>_val5" <?= $k['var5'] == "-" ? "readonly" : "" ?>>
+                </td>
+                <td style="width: 100px"><small><?= $k['ket_kegiatan'] == "" ? "<center>-</center>" : $k['ket_kegiatan'] ?></small></td>
+               </tr>
+               <?php
+              }
+             }
+           ?>
           </tbody>
          </table>
-         <input type="submit" value="SUBMIT" class="btn btn-lg btn-block btn-primary">
+         <input <?= empty($data_kegiatan) ? "disabled" : "" ?> name="btnSubmit" type="submit" value="SUBMIT" class="btn btn-lg btn-block btn-primary">
         </form>
        </div>
       </div>

@@ -28,7 +28,7 @@
     <div class="box">
      <div class="box-header with-border">
       <h3 class="box-title">
-       <a href="<?= base_url() ?>ceklist/setup" class="btn btn-warning"><i class="fa fa-wrench"></i> Setup Ceklist</a>
+       <a href="<?= base_url() ?>ceklist/form" class="btn btn-primary"><i class="fa fa-check-square-o"></i> Ceklist</a>
       </h3>
       <?= btnBantuan() ?>
      </div>
