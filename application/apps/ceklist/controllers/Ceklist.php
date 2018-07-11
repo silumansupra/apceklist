@@ -12,12 +12,12 @@
    }
 
    function index() {
-    $getdata_lokasi = $this->m_ceklist->getdata_lokasi();
-    $data           = array(
-      'h1_title'    => "Data",
-      'h1_subtitle' => "Ceklist",
-      'content'     => 'v_list_ceklist',
-      'data_lokasi' => $getdata_lokasi->result_array(),
+    $data_ceklist = $this->m_ceklist->getdata_ceklists();
+    $data         = array(
+      'h1_title'     => "Data",
+      'h1_subtitle'  => "Ceklist",
+      'content'      => 'v_list_ceklist',
+      'data_ceklist' => $data_ceklist->result_array(),
     );
     $this->load->view('mainview', $data);
    }

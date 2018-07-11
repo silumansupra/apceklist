@@ -35,7 +35,38 @@
      <div class="box-body">
       <?= pesan() ?>
       <!--CONTENT START-->
-
+      <table id="tabel" class="table table-responsive table-bordered table-striped table-hover">
+       <thead>
+        <tr>
+         <th>#</th>
+         <th>TANGGAL</th>
+         <th>LOKASI</th>
+         <th>PETUGAS</th>
+         <th>STATUS CEKLIST</th>
+         <th>AKSI</th>
+        </tr>
+       </thead>
+       <tbody>
+        <?php
+          $no = '1';
+          foreach ($data_ceklist as $r) {
+           $status       = $r['status_ceklist'];
+           $id_petugas   = $r['petugas_ceklist'];
+           $nama_petugas = $this->db->query("SELECT nama_lengkap FROM tm_user WHERE userid ='$id_petugas'")->row()->nama_lengkap;
+           ?>
+           <tr>
+            <th class="nomor"><?= $no++ ?></th>
+            <td class="tengah"><strong><?= date('d-m-Y', strtotime(substr($r['waktu_ceklist'], 0, 10))) ?></strong></td>
+            <td class="tengah"><?= $r['nama_lokasi'] ?></td>
+            <td class="tengah"><?= $nama_petugas ?></td>
+            <td class="tengah"><?= $status == "1" ? "OK" : "PENDING"; ?></td>
+            <td class="aksi">
+             <a title="Cetak" href="<?= base_url() . "ceklist/cetak?id_lokasi=" . $r['id_lokasi'] ?>" class="btn btn-xs btn-info"><i class="fa fa-print"></i></a>
+            </td>
+           </tr>
+          <?php } ?>
+       </tbody>
+      </table>
       <!--CONTENT END-->
      </div>
      <!-- /.box-body -->

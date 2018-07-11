@@ -18,12 +18,12 @@
     } else {
      $getdata_form = "0";
     }
-    $getdata_lokasi = $this->m_ceklist->getdata_lokasi();
-    $data           = array(
+    $data_lokasi = $this->m_ceklist->getdata_lokasi();
+    $data        = array(
       'h1_title'    => "Lokasi",
       'h1_subtitle' => "Ceklist",
       'content'     => 'form/v_index1',
-      'data_lokasi' => $getdata_lokasi->result_array(),
+      'data_lokasi' => $data_lokasi->result_array(),
       'data_form'   => $getdata_form,
     );
 

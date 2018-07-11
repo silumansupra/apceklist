@@ -6,9 +6,15 @@
     parent::__construct();
    }
 
-   function getdata_lokasi() {
-    $data = $this->db->get('tm_lokasi a');
+   function getdata_ceklists() {
+    $this->db->join('tm_lokasi b', 'b.id_lokasi=a.id_lokasi', 'inner');
+    $this->db->group_by('SUBSTRING(waktu_ceklist,1,10)', 'ASC');
+    $data = $this->db->get('tt_ceklist a');
     return $data;
+   }
+
+   function getdata_lokasi() {
+    return $this->db->get('tm_lokasi');
    }
 
    function getdata_form($id) {

@@ -57,31 +57,37 @@
         </div>
         <div class="col-md-4">
          <strong>Keterangan</strong><br>
-         Waktu Server: <?= date('d-m-Y H:i:s') ?>
+         -
         </div>
         <div class="col-md-4">
          <?php
-           $total_perangkat    = $this->db->query("SELECT COUNT( id_perangkat ) as totalp FROM tm_perangkat WHERE id_lokasi ='$id_lokasi'")->row()->totalp;
-           $total_perangkat_ck = $this->db->query("SELECT COUNT( id_perangkat ) as totalpck FROM tt_ceklist WHERE id_lokasi ='$id_lokasi'  AND SUBSTRING(waktu_ceklist,1,10) = '$tanggal'")->row()->totalpck;
-           if (isset($id_lokasi) && $total_perangkat > 0) {
-            $persen = ($total_perangkat / $total_perangkat_ck) * 100;
+           if (isset($id_lokasi)) {
+            $total_perangkat    = $this->db->query("SELECT COUNT( id_perangkat ) as totalp FROM tm_perangkat WHERE id_lokasi ='$id_lokasi'")->row()->totalp;
+            $total_perangkat_ck = $this->db->query("SELECT id_perangkat FROM tt_ceklist WHERE id_lokasi ='$id_lokasi' AND SUBSTRING(waktu_ceklist,1,10) = '$tanggal' GROUP BY id_perangkat")->num_rows();
+            if ($total_perangkat_ck == "0") {
+             $persen = "0";
+            } else {
+             $persen = ($total_perangkat_ck / $total_perangkat) * 100;
+            }
             ?>
             <div class="info-box bg-aqua">
              <span class="info-box-icon"><i class="fa fa-check-square-o"></i></span>
 
              <div class="info-box-content">
-              <span class="info-box-text">STATUS CEKLIST</span>
-              <span class="info-box-number"><?= $total_perangkat ?> perangkat</span>
+              <span class="info-box-text">STATUS CEKLIST <u><?= date('d-m-Y') ?></u></span>
+              <span class="info-box-number">TOTAL: <?= $total_perangkat ?> perangkat</span>
               <div class="progress">
                <div class="progress-bar" style="width: <?= $persen ?>%"></div>
               </div>
               <span class="progress-description">
-               <?= round($persen) ?>% ( <b>3</b> dari <?= $total_perangkat ?> perangkat ).
+               <?= round($persen) ?>% ( <b><?= $total_perangkat_ck ?></b> dari <?= $total_perangkat ?> perangkat ).
               </span>
              </div>
              <!-- /.info-box-content -->
             </div>
-           <?php } ?>
+            <?php
+           }
+         ?>
         </div>
        </form>
       </div>
