@@ -8,6 +8,7 @@
 
    public function __construct() {
     parent::__construct();
+    $this->load->library('calendar');
 //    $this->load->model('m_dashboard');
    }
 

@@ -12,8 +12,7 @@
   <!--Sidebar user panel -->
   <div class = "user-panel">
    <div class = "pull-left image">
-    <? = '<img src = "' . base_url() . 'assets/images/noprofile.jpg" class = "img-circle" alt = "Foto Profile">'
-    ?>
+    <?= '<img src = "' . base_url() . 'assets/images/noprofile.jpg" class = "img-circle" alt = "Foto Profile">' ?>
    </div>
    <div class="pull-left info">
     <p><?= get_namalengkap() ?></p>
@@ -45,9 +44,9 @@
         </span>
        </a>
        <ul class="treeview-menu">
-        <li class="<?= $uri2 == "asman" ? "active" : "" ?>"><a href="<?= base_url() . "setting/asman" ?>"><i class="fa fa-angle-right text-success"></i> Data Asman</a></li>
-        <li class="<?= $uri2 == "user" ? "active" : "" ?>"><a href="<?= base_url() . "setting/user" ?>"><i class="fa fa-angle-right text-success"></i> Data User</a></li>
-        <li class="<?= $uri1 == "profil" ? "active" : "" ?>"><a href="<?= base_url() . "setting/profil" ?>"><i class="fa fa-angle-right text-success"></i> Edit Profil</a></li>
+        <li class="<?= $uri2 == "asman" ? "active" : "" ?>"><a href="<?= base_url() . "setting/asman" ?>"><i class="fa fa-angle-right text-success"></i> Setup Asman</a></li>
+        <li class="<?= $uri2 == "user" ? "active" : "" ?>"><a href="<?= base_url() . "setting/user" ?>"><i class="fa fa-angle-right text-success"></i> Setup User</a></li>
+        <!--<li class="<?= $uri2 == "profil" ? "active" : "" ?>"><a href="<?= base_url() . "setting/profil" ?>"><i class="fa fa-angle-right text-success"></i> Edit Profil</a></li>-->
        </ul>
       </li>
 

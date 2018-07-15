@@ -39,7 +39,9 @@
  .nomor {
   width: 150px;
  }
- .printout{width:100%;}
+ .printout{
+  width:100%;
+ }
  #tengah {
   text-align: center;
  }
@@ -57,6 +59,8 @@
    letter-spacing:0.01cm;
    font-family: Tahoma, Verdana, Arial;
    font-size: 0.75em;
+   /*   margin: 0px;
+      padding: 5px;*/
   }
 
   .muted{
@@ -80,15 +84,17 @@
   table#tbl_ttd, table#tbl_ttd td{
    border: none;
   }
+  .logo {
+   padding: 0px;
+   margin:0px;
+  }
+
  }
 </style>
 <div class="printout">
- LOGO
- <br>
- <br>
- <center>
-  <h4>CEKLIST HARIAN PERANGKAT</h4>
- </center>
+ <img style="z-index:-1; width: 100px;" src="<?= base_url() . "assets/images/logo_top.jpeg" ?>">
+ <center><h4>CEKLIST HARIAN PERANGKAT</h4></center>
+
  LOKASI:  <?= $nama_lokasi ?><br>
  <?php
    $sal          = array();

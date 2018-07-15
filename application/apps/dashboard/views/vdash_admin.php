@@ -27,12 +27,12 @@
     <!-- Default box -->
     <div class="box">
      <div class="box-header with-border">
-      <h3 class="box-title">Status Monitoring</h3>
+      <h3 class="box-title"></h3>
       <?= btnBantuan() ?>
      </div>
      <div class="box-body">
       <!--CONTENT START-->
-
+      <?php //echo $this->calendar->generate(); ?>
       <!--CONTENT END-->
       Start creating your amazing application!
      </div>
