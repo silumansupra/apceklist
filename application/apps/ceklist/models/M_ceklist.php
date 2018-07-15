@@ -37,9 +37,15 @@
    }
 
    function getdata_cetak($tgl, $idl) {
-    $this->db->where('SUBSTRING(waktu_ceklist,1,10)', $tgl);
-    $this->db->where('id_lokasi', $idl);
-    $get = $this->db->get('tt_ceklist');
+    $this->db->select('*');
+    $this->db->select('(SELECT COUNT( * ) FROM tm_kegiatan x WHERE x.id_perangkat = a.id_perangkat ) as trow');
+    $this->db->join('tm_perangkat b', 'b.id_perangkat = a.id_perangkat', 'left');
+    $this->db->join('tm_lokasi d', 'd.id_lokasi = a.id_lokasi', 'left');
+    $this->db->join('tm_kegiatan e', 'e.id_kegiatan = a.id_kegiatan', 'left');
+    $this->db->where('SUBSTRING(a.waktu_ceklist,1,10)', $tgl);
+    $this->db->where('a.id_lokasi', $idl);
+    $this->db->order_by('a.id_perangkat');
+    $get = $this->db->get('tt_ceklist a');
     return $get;
    }
 

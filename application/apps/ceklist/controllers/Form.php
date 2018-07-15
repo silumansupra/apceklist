@@ -20,8 +20,8 @@
     }
     $data_lokasi = $this->m_ceklist->getdata_lokasi();
     $data        = array(
-      'h1_title'    => "Lokasi",
-      'h1_subtitle' => "Ceklist",
+      'h1_title'    => "Form Ceklist",
+      'h1_subtitle' => "",
       'content'     => 'form/v_index1',
       'data_lokasi' => $data_lokasi->result_array(),
       'data_form'   => $getdata_form,
@@ -36,8 +36,8 @@
     $idl  = $get['id_lokasi'];
     $tgl  = $get['tanggal'];
     $data = array(
-      'h1_title'      => "Ceklist",
-      'h1_subtitle'   => "Perangkat",
+      'h1_title'      => "Form Ceklist",
+      'h1_subtitle'   => "",
       'content'       => 'form/v_form_perangkat',
       'data_kegiatan' => $this->m_ceklist->getdata_kegiatan($idp)->result_array(),
     );
@@ -81,6 +81,9 @@
         'petugas_ceklist' => get_userid(),
         'status_ceklist'  => '1',
         'waktu_ceklist'   => date('Y-m-d H:i:s'),
+        'thn'             => date('Y'),
+        'bln'             => date('m'),
+        'tgl'             => date('d'),
         'val1'            => $val1,
         'val2'            => $val2 == '' ? '-' : $val2,
         'val3'            => $val3 == '' ? '-' : $val3,

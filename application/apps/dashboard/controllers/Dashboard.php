@@ -17,8 +17,8 @@
 
    function admin() {
     $data = array(
-      'h1_title'    => "Dashboard",
-      'h1_subtitle' => "Admin",
+      'h1_title'    => "Dashboard Admin",
+      'h1_subtitle' => "",
       'content'     => 'vdash_admin',
     );
     $this->load->view('mainview', $data);

@@ -13,8 +13,8 @@
 
    function index() {
     $data = array(
-      'h1_title'    => "Data",
-      'h1_subtitle' => "Asman",
+      'h1_title'    => "Data Asman",
+      'h1_subtitle' => "",
       'content'     => 'asman/v_list_asman',
       'data_asman'  => $this->m_asman->getdata_asman()->result_array(),
     );
@@ -23,8 +23,8 @@
 
    function edit($id) {
     $data = array(
-      'h1_title'    => "Edit Data",
-      'h1_subtitle' => "Lokasi",
+      'h1_title'    => "Edit Asman",
+      'h1_subtitle' => "",
       'content'     => 'asman/form/v_edit_asman',
       'data_asman'  => $this->m_asman->getdata_byid($id),
     );
@@ -72,8 +72,8 @@
 
    function tambah() {
     $data  = array(
-      'h1_title'    => "Tambah Data",
-      'h1_subtitle' => "Asman",
+      'h1_title'    => "Tambah Asman",
+      'h1_subtitle' => "",
       'content'     => 'asman/form/v_tambah_asman',
     );
     $input = $this->input->post();

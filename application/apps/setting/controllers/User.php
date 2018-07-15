@@ -13,8 +13,8 @@
 
    function index() {
     $data = array(
-      'h1_title'    => "Data",
-      'h1_subtitle' => "User",
+      'h1_title'    => "Data User",
+      'h1_subtitle' => "",
       'content'     => 'user/v_list_user',
       'data_user'   => $this->m_user->getdata_user()->result_array(),
     );
@@ -23,8 +23,8 @@
 
    function edit($id) {
     $data = array(
-      'h1_title'    => "Edit Data",
-      'h1_subtitle' => "User",
+      'h1_title'    => "Edit User",
+      'h1_subtitle' => "",
       'content'     => 'user/form/v_edit_user',
       'data_user'   => $this->m_user->getdata_byid($id),
     );
@@ -83,8 +83,8 @@
 
    function tambah() {
     $data  = array(
-      'h1_title'    => "Tambah Data",
-      'h1_subtitle' => "User",
+      'h1_title'    => "Tambah User",
+      'h1_subtitle' => "",
       'content'     => 'user/form/v_tambah_user',
     );
     $input = $this->input->post();

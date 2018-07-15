@@ -14,8 +14,8 @@
    function index() {
     $get_data_perangkat = $this->m_perangkat->getdata_perangkat();
     $data               = array(
-      'h1_title'       => "Data",
-      'h1_subtitle'    => "Perangkat",
+      'h1_title'       => "Data Perangkat",
+      'h1_subtitle'    => "",
       'content'        => 'v_list_perangkat',
       'data_perangkat' => $get_data_perangkat->result_array(),
     );
@@ -24,8 +24,8 @@
 
    function setup() {
     $data  = array(
-      'h1_title'    => "Setup",
-      'h1_subtitle' => "Perangkat",
+      'h1_title'    => "Setup Perangkat",
+      'h1_subtitle' => "",
       'content'     => 'form/v_setup_perangkat',
     );
     $input = $this->input->post();
@@ -62,8 +62,8 @@
 
    function edit($id) {
     $data = array(
-      'h1_title'       => "Edit Data",
-      'h1_subtitle'    => "Perangkat",
+      'h1_title'       => "Edit Perangkat",
+      'h1_subtitle'    => "",
       'content'        => 'form/v_edit_perangkat',
       'data_perangkat' => $this->m_perangkat->getdata_byid($id)->row(),
       'data_kegiatan'  => $this->m_perangkat->getdata_keg_byid($id)->result_array(),

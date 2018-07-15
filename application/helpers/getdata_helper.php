@@ -62,6 +62,11 @@
    return $CI->session->userdata('nama_lengkap');
   }
 
+  function get_nik() {
+   $CI = &get_instance();
+   return $CI->session->userdata('nik');
+  }
+
   function getnama_hari($val) {
    if ($val == "0") {
     $x = "Minggu";
@@ -77,6 +82,35 @@
     $x = "Jumat";
    } elseif ($val == "6") {
     $x = "Sabtu";
+   }
+   return $x;
+  }
+
+  function getnama_bulan($val) {
+   if ($val == "01") {
+    $x = "JANUARI";
+   } elseif ($val == "02") {
+    $x = "FEBRUARI";
+   } elseif ($val == "03") {
+    $x = "MARET";
+   } elseif ($val == "04") {
+    $x = "APRIL";
+   } elseif ($val == "05") {
+    $x = "MEI";
+   } elseif ($val == "06") {
+    $x = "JUNI";
+   } elseif ($val == "07") {
+    $x = "JULI";
+   } elseif ($val == "08") {
+    $x = "AGUSTUS";
+   } elseif ($val == "09") {
+    $x = "SEPTEMBER";
+   } elseif ($val == "10") {
+    $x = "OKTOBER";
+   } elseif ($val == "11") {
+    $x = "NOVEMBER";
+   } elseif ($val == "12") {
+    $x = "DESEMBER";
    }
    return $x;
   }

@@ -56,6 +56,7 @@
          'log_id'       => $cek_data->userid . "_" . time(),
          'status'       => 'OK',
          'userid'       => $cek_data->userid,
+         'nik'          => $cek_data->nik_user,
          'username'     => $cek_data->username,
          'nama_lengkap' => $cek_data->nama_lengkap,
          'id_level'     => $cek_data->id_level,

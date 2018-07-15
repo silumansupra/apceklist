@@ -75,7 +75,7 @@
              <span class="info-box-icon"><i class="fa fa-check-square-o"></i></span>
 
              <div class="info-box-content">
-              <span class="info-box-text">STATUS CEKLIST <u><?= date('d-m-Y') ?></u></span>
+              <span class="info-box-text">STATUS CEKLIST <u></u></span>
               <span class="info-box-number">TOTAL: <?= $total_perangkat ?> perangkat</span>
               <div class="progress">
                <div class="progress-bar" style="width: <?= $persen ?>%"></div>
@@ -86,6 +86,7 @@
              </div>
              <!-- /.info-box-content -->
             </div>
+            <a target="_blank" class="btn btn-info btn-block btn-flat" href="<?= base_url() . "ceklist/cetak?tanggal=" . $tanggal . "&id_lokasi=" . $id_lokasi ?>"><i class="fa fa-print"></i> Print</a>
             <?php
            }
          ?>
@@ -96,6 +97,7 @@
        <div class="col-md-12">
         <?php if ($data_form !== "0") { ?>
            <h4>DATA PERANGKAT CEKLIST</h4>
+           <p>Tanggal : <?= date('d-m-Y') ?></p>
            <table class="table table-bordered table-striped">
             <thead>
              <tr>
@@ -176,5 +178,4 @@
    $('#id_lokasi').change(function () {
     $('#fPilihLokasi').submit();
    });
-  });
- </script>
+  });</script>

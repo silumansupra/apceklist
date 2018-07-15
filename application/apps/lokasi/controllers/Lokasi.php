@@ -13,8 +13,8 @@
 
    function index() {
     $data = array(
-      'h1_title'    => "Data",
-      'h1_subtitle' => "Lokasi",
+      'h1_title'    => "Data Lokasi",
+      'h1_subtitle' => "",
       'content'     => 'v_list_lokasi',
       'data_lokasi' => $this->m_lokasi->getdata_lokasi()->result_array(),
     );
@@ -23,8 +23,8 @@
 
    function edit($id) {
     $data = array(
-      'h1_title'    => "Edit Data",
-      'h1_subtitle' => "Lokasi",
+      'h1_title'    => "Edit Lokasi",
+      'h1_subtitle' => "",
       'content'     => 'form/v_edit_lokasi',
       'data_lokasi' => $this->m_lokasi->getdata_byid($id),
     );
@@ -72,8 +72,8 @@
 
    function tambah() {
     $data  = array(
-      'h1_title'    => "Tambah Data",
-      'h1_subtitle' => "Lokasi",
+      'h1_title'    => "Tambah Lokasi",
+      'h1_subtitle' => "",
       'content'     => 'form/v_tambah_lokasi',
     );
     $input = $this->input->post();

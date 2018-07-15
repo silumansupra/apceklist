@@ -28,7 +28,7 @@
     <div class="box">
      <div class="box-header with-border">
       <h3 class="box-title">
-       $TITLE
+
       </h3>
       <?= btnBantuan() ?>
      </div>
@@ -71,7 +71,7 @@
               <td class="tengah"><?= $status == "1" ? "OK" : "PENDING"; ?></td>
               <td class="aksi">
                <a title="Detail" href="<?= base_url() . "ceklist/form?tanggal=" . substr($r['waktu_ceklist'], 0, 10) . "&id_lokasi=" . $r['id_lokasi'] ?>" class="btn btn-xs btn-info"><i class="fa fa-search"></i></a>
-               <a title="Cetak" href="<?= base_url() . "ceklist/cetak?tanggal=" . substr($r['waktu_ceklist'], 0, 10) . "&id_lokasi=" . $r['id_lokasi'] ?>" class="btn btn-xs btn-primary"><i class="fa fa-print"></i></a>
+               <a target="_blank" title="Cetak" href="<?= base_url() . "ceklist/cetak?tanggal=" . substr($r['waktu_ceklist'], 0, 10) . "&id_lokasi=" . $r['id_lokasi'] ?>" class="btn btn-xs btn-primary"><i class="fa fa-print"></i></a>
               </td>
              </tr>
             <?php } ?>

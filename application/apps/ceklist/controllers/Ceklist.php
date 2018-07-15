@@ -14,8 +14,8 @@
    function index() {
     $data_ceklist = $this->m_ceklist->getdata_ceklists();
     $data         = array(
-      'h1_title'     => "Data",
-      'h1_subtitle'  => "Ceklist",
+      'h1_title'     => "Data Ceklist",
+      'h1_subtitle'  => "",
       'content'      => 'v_list_ceklist',
       'data_ceklist' => $data_ceklist->result_array(),
     );
@@ -34,7 +34,7 @@
       'idl'          => $idl,
       'tgl'          => $tgl,
     );
-//    debug($data);
+//    debug($data['data_ceklist']);
     $this->load->view('mainview', $data);
    }
 
