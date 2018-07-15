@@ -94,8 +94,12 @@
 <div class="printout">
  <img style="z-index:-1; width: 100px;" src="<?= base_url() . "assets/images/logo_top.jpeg" ?>">
  <center><h4>CEKLIST HARIAN PERANGKAT</h4></center>
-
- LOKASI:  <?= $nama_lokasi ?><br>
+ <table id="tbl_ttd">
+  <tr>
+   <td style="">LOKASI:  <?= $nama_lokasi ?><br></td>
+   <td style="text-align: right">F/IF-NRS.0/02/11-03</td>
+  </tr>
+ </table>
  <?php
    $sal          = array();
    $tu           = array();
@@ -148,11 +152,8 @@
     <th>PERANGKAT</th>
     <th>KEGIATAN</th>
     <th>TOLAK UKUR</th>
-    <th>1</th>
-    <th>2</th>
-    <th>3</th>
-    <th>4</th>
-    <th>5</th>
+    <th colspan='5'>Hari: " . strtoupper(getnama_hari(date('w', strtotime($tanggal)))) . ", Tanggal:" . date('d-m-Y', strtotime($tanggal)) . " </th>
+
     <th>KET</th>
             </tr>";
    $no = 1;
