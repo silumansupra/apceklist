@@ -36,8 +36,28 @@
     return $get;
    }
 
-   function simpan_kegiatan($datakeg) {
-    $query = $this->db->insert('tt_ceklist', $datakeg);
+   function getdata_cetak($tgl, $idl) {
+    $this->db->where('SUBSTRING(waktu_ceklist,1,10)', $tgl);
+    $this->db->where('id_lokasi', $idl);
+    $get = $this->db->get('tt_ceklist');
+    return $get;
+   }
+
+   function insert_ceklist($dataceklist) {
+    $query = $this->db->insert('tt_ceklist', $dataceklist);
+    if ($query) {
+     return true;
+    } else {
+     return false;
+    }
+   }
+
+   function update_ceklist($update, $idk, $idl, $idp, $tgl) {
+    $this->db->where('id_lokasi', $idl);
+    $this->db->where('id_perangkat', $idp);
+    $this->db->where('id_kegiatan', $idk);
+    $this->db->where('SUBSTRING(waktu_ceklist,1,10)', $tgl);
+    $query = $this->db->update('tt_ceklist', $update);
     if ($query) {
      return true;
     } else {

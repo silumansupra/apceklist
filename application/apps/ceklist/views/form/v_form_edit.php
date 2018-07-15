@@ -32,7 +32,7 @@
     <div class="box">
      <div class="box-header with-border">
       <h3 class="box-title">
-       <i class="fa fa-check-square"></i> FORM CEKLIST
+       <i class="fa fa-check-square"></i> FORM EDIT CEKLIST
       </h3>
       <?= btnBantuan() ?>
      </div>
@@ -58,7 +58,7 @@
           <a href="<?= base_url() . "ceklist/form?tanggal=" . $tanggal . "&id_lokasi=" . $id_lokasi ?>" class="btn btn-warning pull-right"><i class="fa fa-arrow-left"></i> Kembali</a>
          </div>
         </div>
-        <form method="post" action="<?= base_url() . "ceklist/form/simpan" ?>" id="fSimpanVal">
+        <form method="post" action="<?= base_url() . "ceklist/form/update" ?>" id="fUpdateVal">
          <input type="hidden" name="id_perangkat" value="<?= $id_perangkat ?>">
          <input type="hidden" name="id_lokasi" value="<?= $id_lokasi ?>">
          <input type="hidden" name="tanggal" value="<?= $tanggal ?>">
@@ -82,25 +82,26 @@
               echo "<tr><td class='tengah' colspan='8'>DATA KEGIATAN TIDAK TERSEDIA</td></tr>";
              } else {
               foreach ($data_kegiatan as $k) {
-               $idk = $k['id_kegiatan'];
+               $idk   = $k['id_kegiatan'];
+               $getvk = $this->db->query("SELECT * FROM tt_ceklist WHERE id_kegiatan ='$idk' AND SUBSTRING(waktu_ceklist,1,10) = '$tanggal'")->row();
                ?>
                <tr>
                 <td><?= $no++ ?></td>
                 <td><?= $k['nama_kegiatan'] . "<br><p class='small text-muted'>" . $k['tolak_ukur'] . "</p>" ?></td>
                 <td class="tengah">
-                 <input style="width: 100px" type="text" class="form-control" placeholder="<?= $k['var1'] == "-" ? "-" : $k['var1'] ?>" name="<?= $idk ?>_val1" <?= $k['var1'] == "-" ? "readonly" : "" ?> required >
+                 <input value="<?= $getvk->val1 == "-" ? "" : $getvk->val1 ?>" style="width: 100px" type="text" class="form-control" placeholder="<?= $k['var1'] == "-" ? "-" : $k['var1'] ?>" name="<?= $idk ?>_val1" <?= $k['var1'] == "-" ? "readonly" : "" ?> required >
                 </td>
                 <td class="tengah">
-                 <input style="width: 100px" type="text" class="form-control" placeholder="<?= $k['var2'] == "-" ? "-" : $k['var2'] ?>" name="<?= $idk ?>_val2" <?= $k['var2'] == "-" ? "readonly" : "" ?>>
+                 <input value="<?= $getvk->val2 == "-" ? "" : $getvk->val2 ?>" style="width: 100px" type="text" class="form-control" placeholder="<?= $k['var2'] == "-" ? "-" : $k['var2'] ?>" name="<?= $idk ?>_val2" <?= $k['var2'] == "-" ? "readonly" : "" ?>>
                 </td>
                 <td class="tengah">
-                 <input style="width: 100px" type="text" class="form-control" placeholder="<?= $k['var3'] == "-" ? "-" : $k['var3'] ?>" name="<?= $idk ?>_val3" <?= $k['var3'] == "-" ? "readonly" : "" ?>>
+                 <input value="<?= $getvk->val3 == "-" ? "" : $getvk->val3 ?>" style="width: 100px" type="text" class="form-control" placeholder="<?= $k['var3'] == "-" ? "-" : $k['var3'] ?>" name="<?= $idk ?>_val3" <?= $k['var3'] == "-" ? "readonly" : "" ?>>
                 </td>
                 <td class="tengah">
-                 <input style="width: 100px" type="text" class="form-control" placeholder="<?= $k['var4'] == "-" ? "-" : $k['var4'] ?>" name="<?= $idk ?>_val4" <?= $k['var4'] == "-" ? "readonly" : "" ?>>
+                 <input value="<?= $getvk->val4 == "-" ? "" : $getvk->val4 ?>" style="width: 100px" type="text" class="form-control" placeholder="<?= $k['var4'] == "-" ? "-" : $k['var4'] ?>" name="<?= $idk ?>_val4" <?= $k['var4'] == "-" ? "readonly" : "" ?>>
                 </td>
                 <td class="tengah">
-                 <input style="width: 100px" type="text" class="form-control" placeholder="<?= $k['var5'] == "-" ? "-" : $k['var5'] ?>" name="<?= $idk ?>_val5" <?= $k['var5'] == "-" ? "readonly" : "" ?>>
+                 <input value="<?= $getvk->val5 == "-" ? "" : $getvk->val5 ?>" style="width: 100px" type="text" class="form-control" placeholder="<?= $k['var5'] == "-" ? "-" : $k['var5'] ?>" name="<?= $idk ?>_val5" <?= $k['var5'] == "-" ? "readonly" : "" ?>>
                 </td>
                 <td style="width: 100px"><small><?= $k['ket_kegiatan'] == "" ? "<center>-</center>" : $k['ket_kegiatan'] ?></small></td>
                </tr>
@@ -110,6 +111,9 @@
            ?>
           </tbody>
          </table>
+         <input type="hidden" name="tanggal" value="<?= $tanggal ?>">
+         <input type="hidden" name="id_lokasi" value="<?= $id_lokasi ?>">
+         <input type="hidden" name="id_perangkat" value="<?= $id_perangkat ?>">
          <input <?= empty($data_kegiatan) ? "disabled" : "" ?> name="btnSubmit" type="submit" value="SUBMIT" class="btn btn-lg btn-block btn-primary">
         </form>
        </div>

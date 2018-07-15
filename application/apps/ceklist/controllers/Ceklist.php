@@ -22,4 +22,20 @@
     $this->load->view('mainview', $data);
    }
 
+   function cetak() {
+    $get  = $this->input->get();
+    $idl  = $get['id_lokasi'];
+    $tgl  = $get['tanggal'];
+    $data = array(
+      'h1_title'     => "Cetak Ceklist",
+      'h1_subtitle'  => "Perangkat",
+      'content'      => 'v_print_ceklist',
+      'data_ceklist' => $this->m_ceklist->getdata_cetak($tgl, $idl)->result_array(),
+      'idl'          => $idl,
+      'tgl'          => $tgl,
+    );
+//    debug($data);
+    $this->load->view('mainview', $data);
+   }
+
   }

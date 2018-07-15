@@ -36,6 +36,7 @@
       <?= btnBantuan() ?>
      </div>
      <div class="box-body">
+      <?= pesan() ?>
       <!--CONTENT START-->
       <div class="row">
        <form method="get" action="<?= base_url() . "ceklist/form" ?>" id="fPilihLokasi">
@@ -126,9 +127,9 @@
                <td class="tengah"><?= $r['status_perangkat'] == "1" ? "AKTIF" : "NON-AKTIF" ?></td>
                <td class="aksi">
                 <?php if ($st_ceklist->num_rows() <= 0) { ?>
-                 <a title="Ceklist" href="<?= base_url() . "ceklist/form/perangkat?tanggal=$tanggal&id_lokasi=$id_lokasi&id_perangkat=" . $r['id_perangkat'] ?>" class="btn btn-success"><i class="fa fa-check-square-o"></i> Ceklist</a>
+                 <a title="Ceklist" href="<?= base_url() . "ceklist/form/perangkat?tanggal=$tanggal&id_lokasi=$id_lokasi&id_perangkat=" . $r['id_perangkat'] ?>" class="btn btn-success btn-sm"><i class="fa fa-check-square-o"></i> Ceklist</a>
                 <?php } else { ?>
-                 <a title="Detail" href="<?= base_url() . "ceklist/form/detail?tanggal=$tanggal&id_lokasi=$id_lokasi&id_perangkat=" . $r['id_perangkat'] ?>" class="btn btn-info"><i class="fa fa-search"></i> Detail</a>
+                 <a title="Edit" href="<?= base_url() . "ceklist/form/edit?tanggal=$tanggal&id_lokasi=$id_lokasi&id_perangkat=" . $r['id_perangkat'] ?>" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i> Edit</a>
                 <?php } ?>
                </td>
               </tr>
