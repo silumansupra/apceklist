@@ -64,7 +64,9 @@
    }
   </style>
 
-  <?php $this->load->view($content) ?>
+  <?php
+  $this->load->view($content)
+  ?>
   <script>
    $(document).ready(function () {
     $("#pesan_flash").fadeTo(800, 400).fadeOut(400, function () {
