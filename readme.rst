@@ -1,5 +1,6 @@
 ###################
 What is CodeIgniter
+TESTING
 ###################
 
 CodeIgniter is an Application Development Framework - a toolkit - for people
