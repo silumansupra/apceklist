@@ -4,7 +4,7 @@ CodeIgniter is an Application Development Framework - a toolkit - for people
 
 LALALLAALLA
 
-who build web sites using PHP. Its goal is to enable you to develop projects
+who build web sites using PHP. Its goal 7s to enable you to develop projects
 much faster than you could if you were writing code from scratch, by providing
 a rich set of libraries for commonly needed tasks, as well as a simple
 interface and logical structure to access these libraries. CodeIgniter lets
